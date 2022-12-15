@@ -15,7 +15,6 @@ import {
   KeyOff,
   Menu as MenuIcon,
   Person,
-  Article,
   Functions,
 } from "@mui/icons-material";
 import DarkLogo from "assets/img/logo_dark.png";
@@ -27,46 +26,43 @@ import { useNavigate } from "react-router-dom";
 type PageKey = "bio" | "posts" | "algorithms";
 const pages: PageKey[] = ["bio", "posts", "algorithms"];
 const pageIcons = {
-  bio: <Person sx={{ marginRight: "8px" }} />,
-  posts: <Article sx={{ marginRight: "8px" }} />,
-  algorithms: <Functions sx={{ marginRight: "8px" }} />,
+  bio: <Person sx={{ marginRight: "4px" }} />,
+  posts: <Create sx={{ marginRight: "4px" }} />,
+  algorithms: <Functions sx={{ marginRight: "4px" }} />,
 };
 
-const toolbarSx = {
-  display: "flex",
-  justifyContent: "space-between",
-  padding: 0,
-};
-
-const adminToolbarSx = {
-  padding: "8px",
-  display: "flex",
-  justifyContent: "flex-end",
-};
-
-const leftLogoSx = {
-  height: "50px",
-  display: { xs: "none", sm: "flex" },
-  "&:hover": {
-    cursor: "pointer",
+const sx = {
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 0,
   },
-};
-
-const pagesSx = {
-  display: { xs: "none", sm: "flex" },
-};
-
-const emptyBoxSx = {
-  width: "48px",
-  display: { xs: "flex", sm: "none" },
-};
-
-const avatarLogoSx = {
-  display: { xs: "flex", sm: "none" },
-};
-
-const anchorMenuSx = {
-  display: { xs: "flex", sm: "none" },
+  adminToolbar: {
+    padding: "8px",
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  leftLogo: {
+    height: "50px",
+    display: { xs: "none", sm: "flex" },
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  pages: {
+    gap: "10px",
+    display: { xs: "none", sm: "flex" },
+  },
+  emptyBox: {
+    width: "48px",
+    display: { xs: "flex", sm: "none" },
+  },
+  avatarLogo: {
+    display: { xs: "flex", sm: "none" },
+  },
+  anchorMenu: {
+    display: { xs: "flex", sm: "none" },
+  },
 };
 
 const Header = () => {
@@ -89,28 +85,29 @@ const Header = () => {
   return (
     <>
       <AppBar position="sticky">
-        <Toolbar sx={toolbarSx}>
+        <Toolbar sx={sx.toolbar}>
           {/* Above xs */}
           <Box
             component="img"
-            sx={leftLogoSx}
+            sx={sx.leftLogo}
             src={DarkLogo}
             alt="logo"
             onClick={() => navigate("/")}
           />
-          <Box sx={pagesSx}>
+          <Box sx={sx.pages}>
             {pages.map((page) => (
               <Button key={page} onClick={() => handleClickMenu(page)}>
+                {pageIcons[page]}
                 {page}
               </Button>
             ))}
           </Box>
           {/* Below sm */}
-          <Box sx={emptyBoxSx} />
-          <IconButton sx={avatarLogoSx} href="/">
+          <Box sx={sx.emptyBox} />
+          <IconButton sx={sx.avatarLogo} href="/">
             <Avatar src={AvatarLogo} alt="logo_avatar" />
           </IconButton>
-          <Box sx={anchorMenuSx}>
+          <Box sx={sx.anchorMenu}>
             <IconButton
               size="large"
               aria-controls="menu-appbar"
@@ -146,7 +143,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {/* Admin menu */}
-      <Box sx={adminToolbarSx}>
+      <Box sx={sx.adminToolbar}>
         <IconButton aria-label="login">
           <Key />
         </IconButton>
