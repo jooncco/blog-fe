@@ -1,7 +1,15 @@
-import React from 'react';
+import Router from "./Router";
+import MuiThemeProvider from "contexts/MuiThemeProvider";
+import { Container } from "@mui/material";
 
-function App() {
-  return <div>Hello, world!</div>;
-}
+const App = () => {
+  return (
+    <MuiThemeProvider>
+      <Container maxWidth="lg" disableGutters={true}>
+        <Router />
+      </Container>
+    </MuiThemeProvider>
+  );
+};
 
 export default App;
