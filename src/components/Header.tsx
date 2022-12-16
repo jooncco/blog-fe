@@ -20,7 +20,7 @@ import {
 import DarkLogo from "assets/img/logo_dark.png";
 import LightLogo from "assets/img/logo_light.png";
 import AvatarLogo from "assets/img/logo_avatar.png";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type PageKey = "bio" | "posts" | "algorithms";
@@ -54,7 +54,8 @@ const sx = {
     display: { xs: "none", sm: "flex" },
   },
   emptyBox: {
-    width: "48px",
+    width: "56px",
+    height: "56px",
     display: { xs: "flex", sm: "none" },
   },
   avatarLogo: {
@@ -66,20 +67,19 @@ const sx = {
 };
 
 const Header = () => {
-  const [showAnchorMenu, setShowAnchorMenu] = useState(false);
+  const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
 
   const handleClickMenu = (page: string) => {
-    setShowAnchorMenu(false);
     navigate(`/${page}`);
   };
 
-  const handleOpenAnchorMenu = () => {
-    setShowAnchorMenu(true);
+  const handleOpenAnchorMenu = (e: MouseEvent<HTMLElement>) => {
+    setAnchorMenu(e.currentTarget);
   };
 
   const handleCloseAnchorMenu = () => {
-    setShowAnchorMenu(false);
+    setAnchorMenu(null);
   };
 
   return (
@@ -118,22 +118,29 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <Menu
-              sx={{ marginTop: "45px" }}
               id="menu-appbar"
-              open={showAnchorMenu}
+              sx={{ marginTop: "45px" }}
+              open={!!anchorMenu}
               onClose={handleCloseAnchorMenu}
+              anchorEl={anchorMenu}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
-              keepMounted
               transformOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
+              keepMounted
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleClickMenu(page)}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleClickMenu(page);
+                    handleCloseAnchorMenu();
+                  }}
+                >
                   {pageIcons[page]}
                   {page.toUpperCase()}
                 </MenuItem>
