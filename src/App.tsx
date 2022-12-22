@@ -1,14 +1,11 @@
 import Router from "./Router";
-import { Container, ThemeProvider } from "@mui/material";
-import DarkTheme from "themes/Dark";
+import { Container } from "@mui/material";
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={DarkTheme}>
-      <Container maxWidth="lg" disableGutters={true}>
-        <Router />
-      </Container>
-    </ThemeProvider>
+    <Container maxWidth="lg" disableGutters={true}>
+      <Router />
+    </Container>
   );
 };
 
