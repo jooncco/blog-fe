@@ -1,10 +1,6 @@
 import * as React from "react";
 
-interface IAppProps {
-  foo: number;
-}
-
-const Post: React.FunctionComponent<IAppProps> = (props) => {
+const Post: React.FC = (props) => {
   return <div> Post </div>;
 };
 

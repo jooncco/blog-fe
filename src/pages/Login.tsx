@@ -1,6 +1,6 @@
 import { Typography, Button, TextField, Box, Alert } from "@mui/material";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <Box className="auth">
       <Typography variant="h1">Login</Typography>

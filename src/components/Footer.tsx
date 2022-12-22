@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer>
       <Typography variant="body2">

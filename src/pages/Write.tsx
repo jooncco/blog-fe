@@ -1,10 +1,6 @@
 import * as React from "react";
 
-interface IAppProps {
-  foo: number;
-}
-
-const Write: React.FunctionComponent<IAppProps> = (props) => {
+const Write: React.FC = () => {
   return <div> Write </div>;
 };
 

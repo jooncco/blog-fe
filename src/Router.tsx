@@ -15,12 +15,12 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<CommonLayout />}>
           <Route path="/" element={<Main />}></Route>
-          <Route path="/bio" element={<Bio foo={1} />}></Route>
-          <Route path="/posts" element={<Posts foo={1} />}></Route>
-          <Route path="/posts/:id" element={<Post foo={1} />}></Route>
-          <Route path="/algorithms" element={<Algorithms foo={1} />}></Route>
-          <Route path="/algorithms/:id" element={<Algorithm foo={1} />}></Route>
-          <Route path="/write" element={<Write foo={1} />}></Route>
+          <Route path="/bio" element={<Bio />}></Route>
+          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/posts/:id" element={<Post />}></Route>
+          <Route path="/algorithms" element={<Algorithms />}></Route>
+          <Route path="/algorithms/:id" element={<Algorithm />}></Route>
+          <Route path="/write" element={<Write />}></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>

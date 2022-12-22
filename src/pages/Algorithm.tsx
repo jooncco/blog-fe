@@ -1,10 +1,6 @@
 import * as React from "react";
 
-interface IAppProps {
-  foo: number;
-}
-
-const Algorithm: React.FunctionComponent<IAppProps> = (props) => {
+const Algorithm: React.FC = (props) => {
   return <div> Algorithm </div>;
 };
 
