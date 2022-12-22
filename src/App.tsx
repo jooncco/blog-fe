@@ -1,14 +1,14 @@
 import Router from "./Router";
-import MuiThemeProvider from "contexts/MuiThemeProvider";
-import { Container } from "@mui/material";
+import { Container, ThemeProvider } from "@mui/material";
+import DarkTheme from "themes/Dark";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <MuiThemeProvider>
+    <ThemeProvider theme={DarkTheme}>
       <Container maxWidth="lg" disableGutters={true}>
         <Router />
       </Container>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 };
 
