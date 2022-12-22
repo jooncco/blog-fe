@@ -7,6 +7,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  styled,
   Toolbar,
 } from "@mui/material";
 import {
@@ -31,44 +32,50 @@ const pageIcons = {
   algorithms: <Functions sx={{ marginRight: "4px" }} />,
 };
 
-const sx = {
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 0,
+const BasicToolbar = styled(Toolbar)(() => ({
+  display: "flex",
+  justifyContent: "space-between",
+  padding: 0,
+})) as typeof Toolbar;
+
+const AdminToolBar = styled(Toolbar)(() => ({
+  padding: "8px",
+  display: "flex",
+  justifyContent: "flex-end",
+})) as typeof Toolbar;
+
+const LeftLogoBox = styled(Box)(() => ({
+  height: "50px",
+  // display: { xs: "none", sm: "flex" },
+  "&:hover": {
+    cursor: "pointer",
   },
-  adminToolbar: {
-    padding: "8px",
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  leftLogo: {
-    height: "50px",
-    display: { xs: "none", sm: "flex" },
-    "&:hover": {
-      cursor: "pointer",
-    },
-  },
-  pages: {
-    gap: "10px",
-    display: { xs: "none", sm: "flex" },
-  },
+})) as typeof Box;
+
+const PagesBox = styled(Box)(() => ({
+  gap: "10px",
+  // display: { xs: "none", sm: "flex" },
+})) as typeof Box;
+
+const EmptyBox = styled(Box)(() => ({
   emptyBox: {
     width: "56px",
     height: "56px",
     display: { xs: "flex", sm: "none" },
   },
-  avatarLogo: {
-    display: { xs: "flex", sm: "none" },
-  },
-  anchorMenu: {
-    display: { xs: "flex", sm: "none" },
-  },
-};
+})) as typeof Box;
 
-const Header = () => {
-  const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
+const AvatarButton = styled(IconButton)(() => ({
+  // display: { xs: "flex", sm: "none" },
+})) as typeof IconButton;
+
+const AnchorMenuBox = styled(Box)(() => ({
+  // display: { xs: "flex", sm: "none" },
+})) as typeof Box;
+
+const Header: React.FC = () => {
   const navigate = useNavigate();
+  const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
 
   const handleClickMenu = (page: string) => {
     navigate(`/${page}`);
@@ -85,29 +92,28 @@ const Header = () => {
   return (
     <>
       <AppBar position="sticky">
-        <Toolbar sx={sx.toolbar}>
+        <BasicToolbar>
           {/* Above xs */}
-          <Box
+          <LeftLogoBox
             component="img"
-            sx={sx.leftLogo}
             src={DarkLogo}
             alt="logo"
             onClick={() => navigate("/")}
           />
-          <Box sx={sx.pages}>
+          <PagesBox>
             {pages.map((page) => (
               <Button key={page} onClick={() => handleClickMenu(page)}>
                 {pageIcons[page]}
                 {page}
               </Button>
             ))}
-          </Box>
+          </PagesBox>
           {/* Below sm */}
-          <Box sx={sx.emptyBox} />
-          <IconButton sx={sx.avatarLogo} href="/">
+          <EmptyBox />
+          <AvatarButton href="/">
             <Avatar src={AvatarLogo} alt="logo_avatar" />
-          </IconButton>
-          <Box sx={sx.anchorMenu}>
+          </AvatarButton>
+          <AnchorMenuBox>
             <IconButton
               size="large"
               aria-controls="menu-appbar"
@@ -146,11 +152,11 @@ const Header = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
-        </Toolbar>
+          </AnchorMenuBox>
+        </BasicToolbar>
       </AppBar>
       {/* Admin menu */}
-      <Box sx={sx.adminToolbar}>
+      <AdminToolBar>
         <IconButton aria-label="login">
           <Key />
         </IconButton>
@@ -162,7 +168,7 @@ const Header = () => {
             <Create />
           </Badge>
         </IconButton>
-      </Box>
+      </AdminToolBar>
     </>
   );
 };
