@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { AppBar, useMediaQuery, useTheme } from "@mui/material";
-import MainToolbar from "./header/MainToolbar";
 import { Pages } from "config/PageConfig";
+import MainToolbar from "./header/MainToolbar";
 import SubToolbar from "./header/SubToolbar";
 
 const Header: FC = () => {
