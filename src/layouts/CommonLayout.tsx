@@ -1,14 +1,14 @@
-import * as React from "react";
+import { FC } from "react";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface CommonLayoutProps {
   showFloatingProfile?: boolean;
   showFloatingIndex?: boolean;
 }
 
-const CommonLayout: React.FunctionComponent<CommonLayoutProps> = ({
+const CommonLayout: FC<CommonLayoutProps> = ({
   showFloatingProfile = false,
   showFloatingIndex = false,
 }) => {

@@ -1,6 +1,6 @@
-import * as React from "react";
+import { FC } from "react";
 
-const Post: React.FC = (props) => {
+const Post: FC = (props) => {
   return <div> Post </div>;
 };
 

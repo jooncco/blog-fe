@@ -1,6 +1,6 @@
-import * as React from "react";
+import { FC } from "react";
 
-const Bio: React.FC = (props) => {
+const Bio: FC = (props) => {
   return <div> Bio </div>;
 };
 
