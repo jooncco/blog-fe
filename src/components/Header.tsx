@@ -8,7 +8,6 @@ import {
   Menu,
   MenuItem,
   styled,
-  Toolbar,
 } from "@mui/material";
 import {
   Create,
@@ -23,6 +22,11 @@ import LightLogo from "assets/img/logo_light.png";
 import AvatarLogo from "assets/img/logo_avatar.png";
 import { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BasicToolbar from "./header/BasicToolbar";
+import SubToolBar from "./header/SubToolbar";
+import LeftLogoBox from "./header/LeftLogoBox";
+import PagesBox from "./header/PagesBox";
+import EmptyBox from "./header/EmptyBox";
 
 type PageKey = "bio" | "posts" | "algorithms";
 const pages: PageKey[] = ["bio", "posts", "algorithms"];
@@ -31,39 +35,6 @@ const pageIcons = {
   posts: <Create sx={{ marginRight: "4px" }} />,
   algorithms: <Functions sx={{ marginRight: "4px" }} />,
 };
-
-const BasicToolbar = styled(Toolbar)(() => ({
-  display: "flex",
-  justifyContent: "space-between",
-  padding: 0,
-})) as typeof Toolbar;
-
-const AdminToolBar = styled(Toolbar)(() => ({
-  padding: "8px",
-  display: "flex",
-  justifyContent: "flex-end",
-})) as typeof Toolbar;
-
-const LeftLogoBox = styled(Box)(() => ({
-  height: "50px",
-  // display: { xs: "none", sm: "flex" },
-  "&:hover": {
-    cursor: "pointer",
-  },
-})) as typeof Box;
-
-const PagesBox = styled(Box)(() => ({
-  gap: "10px",
-  // display: { xs: "none", sm: "flex" },
-})) as typeof Box;
-
-const EmptyBox = styled(Box)(() => ({
-  emptyBox: {
-    width: "56px",
-    height: "56px",
-    display: { xs: "flex", sm: "none" },
-  },
-})) as typeof Box;
 
 const AvatarButton = styled(IconButton)(() => ({
   // display: { xs: "flex", sm: "none" },
@@ -155,8 +126,7 @@ const Header: React.FC = () => {
           </AnchorMenuBox>
         </BasicToolbar>
       </AppBar>
-      {/* Admin menu */}
-      <AdminToolBar>
+      <SubToolBar>
         <IconButton aria-label="login">
           <Key />
         </IconButton>
@@ -168,7 +138,7 @@ const Header: React.FC = () => {
             <Create />
           </Badge>
         </IconButton>
-      </AdminToolBar>
+      </SubToolBar>
     </>
   );
 };
