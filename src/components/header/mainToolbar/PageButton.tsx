@@ -3,11 +3,11 @@ import { Box, Button, styled } from "@mui/material";
 import { pageIcons, PageKey } from "config/PageConfig";
 import { useNavigate } from "react-router-dom";
 
-const ButtonContent = styled(Box)(() => ({
+const ButtonContent = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  gap: "4px",
+  gap: theme.spacing(0.5),
 })) as typeof Box;
 
 interface Props {

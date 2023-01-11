@@ -3,8 +3,8 @@ import { styled, Toolbar } from "@mui/material";
 import { FC } from "react";
 import SubToolbarButton from "./subToolbar/SubToolbarButton";
 
-const StyledToolBar = styled(Toolbar)(() => ({
-  padding: "8px",
+const StyledToolBar = styled(Toolbar)(({ theme }) => ({
+  padding: theme.spacing(1),
   display: "flex",
   justifyContent: "flex-end",
 })) as typeof Toolbar;

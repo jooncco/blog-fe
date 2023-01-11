@@ -1,16 +1,23 @@
 import { FC, useState, MouseEvent } from "react";
-import { Box, IconButton, Menu, MenuItem, styled } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  styled,
+  useTheme,
+} from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { pageIcons, PageKey } from "config/PageConfig";
 
 const Container = styled(Box)(() => ({})) as typeof Box;
 
-const MenuItemContent = styled(Box)(() => ({
+const MenuItemContent = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  gap: "4px",
+  gap: theme.spacing(0.5),
 })) as typeof Box;
 
 interface Props {
@@ -18,6 +25,7 @@ interface Props {
 }
 
 export const AnchorMenu: FC<Props> = ({ pageKeys }) => {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
 
@@ -34,7 +42,7 @@ export const AnchorMenu: FC<Props> = ({ pageKeys }) => {
       </IconButton>
       <Menu
         id="menu-appbar"
-        sx={{ marginTop: "45px" }}
+        sx={{ marginTop: theme.spacing(5.5) }}
         open={!!anchorMenu}
         onClose={() => setAnchorMenu(null)}
         anchorEl={anchorMenu}

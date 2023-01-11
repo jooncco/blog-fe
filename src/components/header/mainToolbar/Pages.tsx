@@ -3,8 +3,8 @@ import { Box, styled } from "@mui/material";
 import { PageKey } from "config/PageConfig";
 import PageButton from "./PageButton";
 
-const Container = styled(Box)(() => ({
-  gap: "10px",
+const Container = styled(Box)(({ theme }) => ({
+  gap: theme.spacing(1.25),
 })) as typeof Box;
 
 interface Props {
