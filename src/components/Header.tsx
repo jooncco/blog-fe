@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { AppBar, useMediaQuery, useTheme } from "@mui/material";
-import { Pages } from "config/PageConfig";
 import MainToolbar from "./header/MainToolbar";
 import SubToolbar from "./header/SubToolbar";
 
@@ -11,7 +10,7 @@ const Header: FC = () => {
   return (
     <>
       <AppBar position="sticky">
-        <MainToolbar pages={Pages} narrowDisplay={xs === true} />
+        <MainToolbar narrowDisplay={xs === true} />
       </AppBar>
       <SubToolbar />
     </>

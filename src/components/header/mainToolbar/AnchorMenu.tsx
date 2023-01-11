@@ -1,36 +1,33 @@
 import { FC, useState, MouseEvent } from "react";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem, styled } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { PageIcons, PageKey } from "config/PageConfig";
+import { pageIcons, PageKey } from "config/PageConfig";
+
+const Container = styled(Box)(() => ({})) as typeof Box;
+
+const MenuItemContent = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: "4px",
+})) as typeof Box;
 
 interface Props {
-  pages: PageKey[];
+  pageKeys: PageKey[];
 }
 
-export const AnchorMenu: FC<Props> = ({ pages }) => {
+export const AnchorMenu: FC<Props> = ({ pageKeys }) => {
   const navigate = useNavigate();
   const [anchorMenu, setAnchorMenu] = useState<HTMLElement | null>(null);
 
-  const handleClickMenu = (page: string) => {
-    navigate(`/${page}`);
-  };
-
-  const handleOpenAnchorMenu = (e: MouseEvent<HTMLElement>) => {
-    setAnchorMenu(e.currentTarget);
-  };
-
-  const handleCloseAnchorMenu = () => {
-    setAnchorMenu(null);
-  };
-
   return (
-    <>
+    <Container>
       <IconButton
         size="large"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        onClick={handleOpenAnchorMenu}
+        onClick={(e: MouseEvent<HTMLElement>) => setAnchorMenu(e.currentTarget)}
         color="inherit"
       >
         <MenuIcon />
@@ -39,7 +36,7 @@ export const AnchorMenu: FC<Props> = ({ pages }) => {
         id="menu-appbar"
         sx={{ marginTop: "45px" }}
         open={!!anchorMenu}
-        onClose={handleCloseAnchorMenu}
+        onClose={() => setAnchorMenu(null)}
         anchorEl={anchorMenu}
         anchorOrigin={{
           vertical: "top",
@@ -51,19 +48,21 @@ export const AnchorMenu: FC<Props> = ({ pages }) => {
         }}
         keepMounted
       >
-        {pages.map((page) => (
+        {pageKeys.map((pageKey) => (
           <MenuItem
-            key={page}
+            key={pageKey}
             onClick={() => {
-              handleClickMenu(page);
-              handleCloseAnchorMenu();
+              navigate(`/${pageKey}`);
+              setAnchorMenu(null);
             }}
           >
-            {PageIcons[page]}
-            {page.toUpperCase()}
+            <MenuItemContent>
+              {pageIcons[pageKey]}
+              {pageKey.toUpperCase()}
+            </MenuItemContent>
           </MenuItem>
         ))}
       </Menu>
-    </>
+    </Container>
   );
 };

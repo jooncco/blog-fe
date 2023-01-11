@@ -5,7 +5,7 @@ import LeftLogo from "./mainToolbar/LeftLogo";
 import Pages from "./mainToolbar/Pages";
 import CenterLogo from "./mainToolbar/CenterLogo";
 import { AnchorMenu } from "./mainToolbar/AnchorMenu";
-import { PageKey } from "config/PageConfig";
+import { pageKeys } from "config/PageConfig";
 
 const StyledToolbar = styled(Toolbar)(() => ({
   display: "flex",
@@ -14,24 +14,23 @@ const StyledToolbar = styled(Toolbar)(() => ({
 })) as typeof Toolbar;
 
 type Props = {
-  pages: PageKey[];
   narrowDisplay: boolean;
 };
 
-const MainToolbar: FC<Props> = ({ pages, narrowDisplay }) => {
+const MainToolbar: FC<Props> = ({ narrowDisplay }) => {
   return (
     <StyledToolbar>
       {!narrowDisplay && (
         <>
           <LeftLogo />
-          <Pages pages={pages} />
+          <Pages pageKeys={pageKeys} />
         </>
       )}
       {narrowDisplay && (
         <>
           <EmptyBox />
           <CenterLogo />
-          <AnchorMenu pages={pages} />
+          <AnchorMenu pageKeys={pageKeys} />
         </>
       )}
     </StyledToolbar>

@@ -1,8 +1,7 @@
+import { Create, Key, KeyOff } from "@mui/icons-material";
 import { styled, Toolbar } from "@mui/material";
 import { FC } from "react";
-import LoginButton from "./subToolbar/LoginButton";
-import LogoutButton from "./subToolbar/LogoutButton";
-import WriteButton from "./subToolbar/WriteButton";
+import SubToolbarButton from "./subToolbar/SubToolbarButton";
 
 const StyledToolBar = styled(Toolbar)(() => ({
   padding: "8px",
@@ -13,9 +12,15 @@ const StyledToolBar = styled(Toolbar)(() => ({
 const SubToolBar: FC = () => {
   return (
     <StyledToolBar>
-      <LoginButton />
-      <LogoutButton />
-      <WriteButton />
+      <SubToolbarButton icon={<Key />} href="/login" />
+      <SubToolbarButton icon={<KeyOff />} href="/logout" />
+      <SubToolbarButton
+        icon={<Create />}
+        href="/write"
+        showBadge={true}
+        badgeContent={1}
+        badgeColor="error"
+      />
     </StyledToolBar>
   );
 };

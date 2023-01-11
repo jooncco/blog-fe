@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Box, styled } from "@mui/material";
 
-const StyledBox = styled(Box)(() => ({
+const Container = styled(Box)(() => ({
   width: "48px",
   height: "48px",
 })) as typeof Box;
 
 export const EmptyBox: FC = () => {
-  return <StyledBox />;
+  return <Container />;
 };
 
 export default EmptyBox;

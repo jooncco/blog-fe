@@ -1,9 +1,20 @@
 import { FC } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
+
+const StyledFooter = styled(Box)(({ theme }) => ({
+  // backgroundColor: theme.palette.background.paper,
+  marginTop: theme.spacing(10),
+  padding: theme.spacing(4),
+  backgroundColor: theme.palette.grey[900],
+})) as typeof Box;
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+})) as typeof Box;
 
 const Footer: FC = () => {
   return (
-    <footer>
+    <StyledFooter>
       <Typography variant="body2">
         Made with ❤️ and <b>React.ts</b>
       </Typography>
@@ -11,9 +22,9 @@ const Footer: FC = () => {
         <Typography variant="caption">
           © 2022. <b>JunHa Daniel Jeong</b> all rights reseved.
         </Typography>
-        <Box className="social">social icon links.</Box>
+        <StyledBox>social icon links.</StyledBox>
       </Box>
-    </footer>
+    </StyledFooter>
   );
 };
 

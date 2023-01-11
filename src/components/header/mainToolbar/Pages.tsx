@@ -1,31 +1,23 @@
 import { FC } from "react";
-import { Box, Button, styled } from "@mui/material";
-import { PageIcons, PageKey } from "config/PageConfig";
-import { useNavigate } from "react-router-dom";
+import { Box, styled } from "@mui/material";
+import { PageKey } from "config/PageConfig";
+import PageButton from "./PageButton";
 
-const StyledBox = styled(Box)(() => ({
+const Container = styled(Box)(() => ({
   gap: "10px",
 })) as typeof Box;
 
 interface Props {
-  pages: PageKey[];
+  pageKeys: PageKey[];
 }
 
-const Pages: FC<Props> = ({ pages }) => {
-  const navigate = useNavigate();
-  const handleClickMenu = (page: string) => {
-    navigate(`/${page}`);
-  };
-
+const Pages: FC<Props> = ({ pageKeys }) => {
   return (
-    <StyledBox>
-      {pages.map((page) => (
-        <Button key={page} onClick={() => handleClickMenu(page)}>
-          {PageIcons[page]}
-          {page}
-        </Button>
+    <Container>
+      {pageKeys.map((key) => (
+        <PageButton pageKey={key} />
       ))}
-    </StyledBox>
+    </Container>
   );
 };
 

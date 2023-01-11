@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DarkLogo from "assets/img/logo_dark.png";
 import LightLogo from "assets/img/logo_light.png";
 
-const StyledBox = styled(Box)(() => ({
+const Container = styled(Box)(() => ({
   height: "50px",
   "&:hover": {
     cursor: "pointer",
@@ -15,7 +15,7 @@ const LeftLogo: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <StyledBox
+    <Container
       component="img"
       src={DarkLogo}
       alt="logo"
